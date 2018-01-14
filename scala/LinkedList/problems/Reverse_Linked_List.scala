@@ -33,7 +33,7 @@ object Reverse_Linked_List {
   }
 
   /**
-    * 不改变链表，递归的方法
+    * 递归的方法
     * @param head
     * @return
     */
@@ -48,6 +48,21 @@ object Reverse_Linked_List {
     val newHead = head.next // 下一个节点作为head节点
     head.next = preNode // 最新的头节点head指向前面的节点
     return reverse(newHead,head)
+  }
+
+  /**
+    * 迭代的方法：
+    */
+  def reverseListByIm(head: ListNode): ListNode = {
+    var preHead:ListNode = null // 此处不能写成var preHead = null
+    var cruHead = head
+    while(cruHead != null) {
+      val tmpHead = cruHead.next
+      cruHead.next = preHead
+      preHead = cruHead
+      cruHead = tmpHead
+    }
+    return head
   }
 
 }
