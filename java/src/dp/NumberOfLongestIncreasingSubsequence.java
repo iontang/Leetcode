@@ -1,4 +1,5 @@
-package dp;
+package src.dp;
+
 
 /**
  * 子序列的个数相同最多的值
@@ -16,6 +17,11 @@ public class NumberOfLongestIncreasingSubsequence {
 		nois.findNumberOfLIS(nums);
 	}
 	
+	/**
+	 * 错误答案：
+	 * @param nums
+	 * @return
+	 */
     public int findNumberOfLIS(int[] nums) {
     	int n = nums.length;
         if (n<2)
@@ -47,4 +53,33 @@ public class NumberOfLongestIncreasingSubsequence {
     	return count;
     }
 
+    public int findNumberOfLIS_A1(int[] nums) {
+    	int n = nums.length;
+    	int[] lisValue = new int[n];
+    	int[] sumValue = new int[n];
+    	int maxLIS = 0;
+    	int sum =0;
+    	for (int i = 0;i<n;i++) {
+    		lisValue[i]=1;
+    		sumValue[i]=1;
+    		for (int j=0;j<i;j++) {
+    			if (nums[i] > nums[j]) {
+    				if (lisValue[i] == lisValue[j] + 1) {
+        				sumValue[i] += sumValue[j];// sumValue[j]为长度为lisValue[j]的个数
+        			} else if (lisValue[i] < lisValue[j] + 1) {
+        				lisValue[i] = lisValue[j] + 1;
+        				sumValue[i] = sumValue[j];
+        			}
+    			}
+    		}
+    		if (maxLIS == lisValue[i]) {
+    			maxLIS +=sumValue[i];
+    		}
+    		if (maxLIS < lisValue[i]) {
+    			maxLIS = lisValue[i];
+    			sum = sumValue[i];
+    		}
+    	}
+    	return sum;
+    }
 }

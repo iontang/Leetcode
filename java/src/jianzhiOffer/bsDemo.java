@@ -1,7 +1,6 @@
-package jianzhiOffer;
+package src.jianzhiOffer;
 
 /**
- * 二分法求解的demo
  * @author tangning
  *
  */
@@ -18,10 +17,9 @@ public class bsDemo {
 		while (pre <= last) {
 			int middle = (pre + last) /2;
 			System.out.println("pre=" + pre + " " + "middle=" + middle + " "+ "last = " + last);
-			// 在左半部分，最大值缩小
 			if (target < arr[middle]) {
 				last = middle -1;
-			} else if (target > arr[middle]) { // 在右半部分，最小值变大
+			} else if (target > arr[middle]) {
 				pre = middle+1;
 			} else {
 				System.out.println("true");
