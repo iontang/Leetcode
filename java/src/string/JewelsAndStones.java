@@ -52,13 +52,6 @@ public class JewelsAndStones {
         return res;
     }
 
-    public static void main(String[] args) {
-        String J = "aAc";
-        String S = "aAAbcde";
-        JewelsAndStones.numJewelsInStones_A3(J, S);
-
-    }
-
     // 不借助Java API实现O(n)的算法
     public static int numJewelsInStones_A3(String J, String S) {
         // 此处128取值是ASCII码的个数
@@ -76,5 +69,11 @@ public class JewelsAndStones {
         return total;
     }
 
+    public static void main(String[] args) {
+        String J = "aAc";
+        String S = "aAAbcde";
+        JewelsAndStones.numJewelsInStones_A3(J, S);
 
+    }
+    
 }
