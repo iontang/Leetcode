@@ -38,4 +38,28 @@ public class FindLargesValueInEachTreeRow {
         return lst;
     }
 
+
+    /**
+     * 递归
+     * @param root
+     * @return
+     */
+    public List<Integer> largestValues_A1(TreeNode root) {
+        List<Integer> res = new ArrayList<>();
+        helper(root, 0, res);
+        return res;
+    }
+    private void helper(TreeNode root, int depth, List<Integer> res){
+        if(root == null) return;
+        if(depth == res.size()){
+            res.add(root.val);
+        } else {
+            res.set(depth, Math.max(res.get(depth), root.val));
+        }
+        helper(root.left, depth + 1, res);
+        helper(root.right, depth + 1, res);
+    }
+
+
+
 }
