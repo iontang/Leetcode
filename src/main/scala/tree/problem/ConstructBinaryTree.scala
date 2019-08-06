@@ -1,6 +1,6 @@
 package treeh.problem
 
-import treeh.common.TreeNode
+import tree.common.TreeNode
 
 /**
   * 根据前序遍历和中序遍历重建二叉树：

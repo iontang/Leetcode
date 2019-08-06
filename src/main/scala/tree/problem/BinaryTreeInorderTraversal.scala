@@ -1,6 +1,5 @@
 package treeh.problem
 
-import treeh.common.TreeNode
 
 object BinaryTreeInorderTraversal {
 

@@ -1,4 +1,4 @@
-package treeh.common
+package tree.common
 
 /**
   * 二叉树的基本节点
