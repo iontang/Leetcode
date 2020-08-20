@@ -1,4 +1,4 @@
-package year.year_2020.month_03.problems_20200323.Merge_Two_Sorted_Lists;
+package problems_by_year.year_2020.month_03.problems_20200323.Merge_Two_Sorted_Lists;
 
 public class Solution {
 

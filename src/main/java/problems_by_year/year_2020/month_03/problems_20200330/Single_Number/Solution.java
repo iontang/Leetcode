@@ -1,4 +1,4 @@
-package year.year_2020.month_03.problems_20200330.Single_Number;
+package problems_by_year.year_2020.month_03.problems_20200330.Single_Number;
 
 import java.util.HashSet;
 import java.util.Iterator;

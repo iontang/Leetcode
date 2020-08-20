@@ -1,4 +1,4 @@
-package problems_by_year.year_2020.month_07.problems_0720;
+package problems_by_year.year_2020.month_07.problems_0720.Remove_Linked_List_Elements;
 
 import linkedlist.common.ListNode;
 
@@ -22,7 +22,6 @@ public class Solution {
     public ListNode removeElements(ListNode head, int val) {
         ListNode fakeHead = new ListNode(-1);
         fakeHead.next = head;
-
         ListNode resNode = fakeHead;
         while (head != null ) {
             if (head.val == val) {

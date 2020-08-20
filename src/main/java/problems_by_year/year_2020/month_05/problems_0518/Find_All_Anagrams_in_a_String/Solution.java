@@ -1,4 +1,4 @@
-package problems_by_year.year_2020.month_05.Find_All_Anagrams_in_a_String;
+package problems_by_year.year_2020.month_05.problems_0518.Find_All_Anagrams_in_a_String;
 
 import java.util.*;
 

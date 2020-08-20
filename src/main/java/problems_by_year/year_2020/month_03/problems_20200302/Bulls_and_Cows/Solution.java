@@ -1,4 +1,4 @@
-package year.year_2020.month_03.problems_20200302.Bulls_and_Cows;
+package problems_by_year.year_2020.month_03.problems_20200302.Bulls_and_Cows;
 
 import java.util.HashMap;
 import java.util.LinkedList;

@@ -1,4 +1,4 @@
-package problems_by_year.year_2020.month_06.Coin_Change;
+package problems_by_year.year_2020.month_06.problems_0608.Coin_Change;
 
 import java.util.Arrays;
 
@@ -15,7 +15,7 @@ public class Solution {
 //        int[] coins = new int[]{186,419,83,408};
         int[] coins = new int[]{1,2,5};
         Solution solution = new Solution();
-        solution.coinChange(coins, 11);
+        solution.coinChange_A1(coins, 11);
         System.out.println();
     }
 
@@ -79,11 +79,11 @@ public class Solution {
     public int coinChange(int[] coins, int amount) {
         int[] dp = new int[amount + 1];
         dp[0] = 0;
-        for(int m = 1;m < amount + 1;m++){
+        for(int m = 1; m < amount + 1; m++){
             dp[m] = Integer.MAX_VALUE;
         }
         for(int num: coins){
-            for(int i = num;i < amount + 1;i++){
+            for(int i = num; i < amount + 1;i++){
                 if(dp[i - num] != Integer.MAX_VALUE) {
                     dp[i] = Math.min(1 + dp[i - num], dp[i]);
                 }

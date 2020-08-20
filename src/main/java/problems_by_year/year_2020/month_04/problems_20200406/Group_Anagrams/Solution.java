@@ -1,4 +1,4 @@
-package year.year_2020.month_04.problems_20200406.Group_Anagrams;
+package problems_by_year.year_2020.month_04.problems_20200406.Group_Anagrams;
 
 
 import java.util.*;

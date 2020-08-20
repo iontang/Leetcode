@@ -1,4 +1,4 @@
-package year.year_2020.month_03.problems_20200302.Summary_Ranges;
+package problems_by_year.year_2020.month_03.problems_20200302.Summary_Ranges;
 
 import java.util.LinkedList;
 import java.util.List;

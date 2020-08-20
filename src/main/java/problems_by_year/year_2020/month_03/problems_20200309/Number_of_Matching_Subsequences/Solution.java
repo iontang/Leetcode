@@ -1,4 +1,4 @@
-package year.year_2020.month_03.problems_20200309.Number_of_Matching_Subsequences;
+package problems_by_year.year_2020.month_03.problems_20200309.Number_of_Matching_Subsequences;
 
 public class Solution {
 

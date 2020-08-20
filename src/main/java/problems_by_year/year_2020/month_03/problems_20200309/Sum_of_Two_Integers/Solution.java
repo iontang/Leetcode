@@ -1,4 +1,4 @@
-package year.year_2020.month_03.problems_20200309.Sum_of_Two_Integers;
+package problems_by_year.year_2020.month_03.problems_20200309.Sum_of_Two_Integers;
 
 public class Solution {
 

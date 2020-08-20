@@ -1,4 +1,4 @@
-package year.year_2020.month_03.problems_20200302.Missing_Number;
+package problems_by_year.year_2020.month_03.problems_20200302.Missing_Number;
 
 public class Solution {
 
