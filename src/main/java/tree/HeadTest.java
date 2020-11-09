@@ -1,4 +1,4 @@
-package treeh;
+package tree;
 
 import java.io.IOException;
 import java.net.*;

@@ -8,4 +8,7 @@ package distributed.paxos.pojo;
  * @Date: 2020/7/8 10:22 下午
  */
 public class Proposal {
+
+    private String proposalId;
+    private String value;
 }

@@ -1,10 +1,10 @@
-package treeh.problem;
+package tree.problem;
 
-import treeh.common.TreeNode;
+import tree.common.TreeNode;
 
 
 /**
- * 508. Most Frequent Subtree Sum
+ * 508. Most Frequent Subtree Three_Sum
  *
  * 题意：找到子树之和出现次数最多的结果；
  *

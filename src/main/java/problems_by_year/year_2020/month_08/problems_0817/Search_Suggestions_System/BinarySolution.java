@@ -14,6 +14,15 @@ import java.util.TreeMap;
  * @Date: 2020/8/20 8:28 上午
  */
 public class BinarySolution {
+
+    public static void main(String[] args) {
+        String[] products = new String[]{"mobile", "mouse", "moneypot", "monitor", "mousepad"};
+        String searchWord = "mouse";
+        BinarySolution binarySolution = new BinarySolution();
+        binarySolution.suggestedProducts_A1(products, searchWord);
+
+    }
+
     /**
      * approach 1: sort then binary search
      * 1. sort input array
@@ -27,7 +36,7 @@ public class BinarySolution {
      * @return
      */
     public List<List<String>> suggestedProducts_A1(String[] products, String searchWord) {
-        List<List<String>> res= new ArrayList<List<String>>();
+        List<List<String>> res= new ArrayList<>();
         int low=0;
         int high= products.length-1;
         int min=0;

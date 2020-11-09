@@ -27,7 +27,7 @@ public class Solution {
      * [[2,1,1,0],[1,1,0,2],[0,0,0,1],[2,1,0,1],[0,0,0,1]] --> 3
      * 【 为什么会是4的结果？答：因为我用的是深度优先遍历，得到的是递归路径的长度，正确的做法应该是使用广度优先遍历，
      *   并且多个rotten orange同时进行取最小值】
-     * 备注：向上面两个例子是多个起始点同时开始的，需要找到fresh -> rotting所有点的最短路径
+     * 备注：像上面两个例子是多个起始点同时开始的，需要找到fresh -> rotting所有点的最短路径
      */
     public int orangesRotting_W3(int[][] grid) {
         int max = 0;
@@ -49,7 +49,6 @@ public class Solution {
         }
         return max;
     }
-
     private int dfs(int[][] grid, int sr, int sc, int loopValue){
         if (sr<0 || sr >= grid.length || sc<0 || sc>=grid[0].length) {
             return loopValue;

@@ -1,6 +1,6 @@
-package treeh.problem;
+package tree.problem;
 
-import treeh.common.TreeNode;
+import tree.common.TreeNode;
 
 import java.util.ArrayList;
 import java.util.List;

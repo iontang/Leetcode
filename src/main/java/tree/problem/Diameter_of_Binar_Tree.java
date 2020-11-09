@@ -1,7 +1,7 @@
-package treeh.problem;
+package tree.problem;
 
 
-import treeh.common.TreeNode;
+import tree.common.TreeNode;
 
 /**
  * 543. Diameter of Binary Tree

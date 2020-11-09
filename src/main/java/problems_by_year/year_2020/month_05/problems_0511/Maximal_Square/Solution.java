@@ -37,7 +37,16 @@ public class Solution {
         return 0;
     }
 
-
+    /**
+     * Input:
+     * 1 1 1 0 0
+     * 1 1 1 1 1
+     * 1 1 1 1 1
+     * 1 0 0 1 0
+     * Output: 4
+     * @param matrix
+     * @return
+     */
     public int maximalSquare_A1(char[][] matrix) {
         int rows = matrix.length, cols = rows > 0 ? matrix[0].length : 0;
         int maxsqlen = 0;
@@ -73,6 +82,54 @@ public class Solution {
             }
         }
         return maxsqlen * maxsqlen;
+    }
+
+
+    public int maximalSquare_test(int[][] matrix) {
+        int rows = matrix.length, cols = rows > 0 ? matrix[0].length : 0;
+        int maxsqlen = 0;
+        for (int i = 0; i < rows; i++) {
+            for (int j = 0; j < cols; j++) {
+                if (matrix[i][j] == 1) {
+                    if (i == 2 && j == 2) {
+                        System.out.println("###");
+                    }
+                    int sqlen = 1;
+                    boolean flag = true;
+                    // 此处是and的语句，所以在遍历的时候一定会是一个正方形。
+                    while (sqlen + i < rows && sqlen + j < cols && flag) {
+                        // 横坐标从保持i+sqlen不变，遍历纵坐标
+                        for (int k = j; k <= sqlen + j; k++) {
+                            if (matrix[i + sqlen][k] == 0) {
+                                flag = false;
+                                break;
+                            }
+                        }
+                        for (int k = i; k <= sqlen + i; k++) {
+                            if (matrix[k][j + sqlen] == 0) {
+                                flag = false;
+                                break;
+                            }
+                        }
+                        if (flag) {
+                            sqlen++;
+                        }
+                    }
+                    if (maxsqlen < sqlen) {
+                        // 找到最大的正方形长度，然后结尾相乘
+                        maxsqlen = sqlen;
+                    }
+                }
+            }
+        }
+        return maxsqlen * maxsqlen;
+    }
+
+    public static void main(String[] args) {
+        Solution solution = new Solution();
+        int[][] matrix = {{1,1,0,0,1},{0,1,0,0,1},{0,0,1,1,1},{0,0,1,1,1},{0,0,0,0,1}};
+
+        solution.maximalSquare_test(matrix);
     }
 
 }

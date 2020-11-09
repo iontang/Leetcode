@@ -33,7 +33,7 @@ public class HeapSort {
         }
     }
 
-    private void swap(int i,int j){
+    private void swap(int i, int j){
         int temp = arr[i];
         arr[i] = arr[j];
         arr[j] = temp;
@@ -62,6 +62,7 @@ public class HeapSort {
 
     public static void main(String[] args) {
         System.out.println(4 >> 1);
+        System.out.println(2 << 1);
     }
 
 }

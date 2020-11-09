@@ -1,4 +1,7 @@
 package consistenhash.demo3;
 
-public class HashFunction {
+public interface HashFunction {
+
+    long hash(String key);
+
 }

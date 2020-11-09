@@ -8,4 +8,5 @@ package distributed.paxos.pojo;
  * @Date: 2020/7/8 10:24 下午
  */
 public class Learner {
+
 }

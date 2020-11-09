@@ -1,6 +1,6 @@
-package treeh.problem;
+package tree.problem;
 
-import treeh.common.TreeNode;
+import tree.common.TreeNode;
 
 /**
  * 题意：这道题让我们修剪一棵二叉搜索树，给了个边界范围[L, R], 所有不在这个范围内的结点应该被移除掉，但是仍需要保留二叉搜索树的性质，即左<根<右，有时候是小于等于。

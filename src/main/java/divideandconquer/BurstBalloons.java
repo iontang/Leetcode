@@ -29,7 +29,7 @@ import java.util.PriorityQueue;
  *
  * 题意：在一个数组中，任意取三个数连乘，再删除中间那个数，接着，剩下的数做同样的操作，把所有操作的结果相加。
  *
- * 对比 215. Kth Largest Element in an Array 这道题目
+ * 对比 215. Kth Largest Element in an array 这道题目
  *
  */
 

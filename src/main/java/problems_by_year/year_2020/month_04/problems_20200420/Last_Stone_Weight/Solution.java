@@ -43,6 +43,51 @@ public class Solution {
 
     }
 
+    /**
+     * dynamic programming:
+     *
+     * @param stones
+     * @return
+     */
+    public int lastStoneWeight_A1(int[] stones) {
+        int n = stones.length-1;
+        int sum = 0, result = 0;
+        for (int i = 1; i <= n; i++) {
+            sum += stones[i];
+        }
+
+        boolean[] dp = new boolean[sum / 2 + 1];
+        dp[0] = true;
+        for (int i = 1; i <= n; i++) {
+            for (int j = sum/2; j >= stones[i]; j--) {
+                dp[j] |= dp[j-stones[i]];
+            }
+        }
+        for (int j = sum/2; j>= 0; j--) {
+            if (dp[j]) {
+                result = Math.abs(j-(sum-j));
+                break;
+            }
+        }
+        return result;
+    }
+
+    public int lastStoneWeight_A2(int[] stones) {
+        int sum = 0;
+        int[] dp = new int[15000];
+        for (int i = 0; i < stones.length; i++) {
+            sum += stones[i];
+        }
+        for (int i = 0; i < stones.length; i++) {
+            for (int j = sum / 2; j >= stones[i]; j--) {
+                dp[j] = Math.max(dp[j], dp[j-stones[i]] + stones[i]);
+            }
+        }
+        return sum-2*dp[sum/2];
+    }
+
+
+
     public static void main(String[] args) {
         Integer i = null;
         System.out.println(10 - i);

@@ -30,7 +30,7 @@ public class Solution {
 
     /**
      * @param n
-     * @param connections 邻接表 表示的图。
+     * @param connections 邻接表 表示的图，此处的写法不用转成邻接矩阵
      * @return
      */
     public List<List<Integer>> criticalConnections(int n, List<List<Integer>> connections) {

@@ -1,8 +1,8 @@
-package treeh.problem;
+package tree.problem;
 
 import java.util.LinkedList;
 import java.util.List;
-import treeh.common.TreeNode;
+import tree.common.TreeNode;
 
 import java.util.ArrayList;
 import java.util.Queue;

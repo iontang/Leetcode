@@ -1,4 +1,4 @@
-package consistenhash.demo3;
+package consistenhash.demo4;
 
 
 import java.security.MessageDigest;
@@ -7,11 +7,15 @@ import java.util.Collection;
 import java.util.Iterator;
 import java.util.SortedMap;
 import java.util.TreeMap;
+import java.util.concurrent.locks.Lock;
+import java.util.concurrent.locks.ReentrantReadWriteLock;
 
 
 public class ConsistentHashRouter<T extends Node> {
     private final SortedMap<Long, VirtualNode<T>> ring = new TreeMap<>();
     private final HashFunction hashFunction;
+    private ReentrantReadWriteLock lock = new ReentrantReadWriteLock();
+
 
     public ConsistentHashRouter(Collection<T> pNodes, int vNodeCount) {
         this(pNodes,vNodeCount, new MD5Hash());
@@ -41,12 +45,19 @@ public class ConsistentHashRouter<T extends Node> {
      * @param vNodeCount the number of virtual node of the physical node. Value should be greater than or equals to 0
      */
     public void addNode(T pNode, int vNodeCount) {
-        if (vNodeCount < 0) throw new IllegalArgumentException("illegal virtual node counts :" + vNodeCount);
-        int existingReplicas = getExistingReplicas(pNode);
-        for (int i = 0; i < vNodeCount; i++) {
-            VirtualNode<T> vNode = new VirtualNode<>(pNode, i + existingReplicas);
-            ring.put(hashFunction.hash(vNode.getKey()), vNode);
+        Lock writeLock = lock.writeLock();
+        try {
+            writeLock.unlock();
+            if (vNodeCount < 0) throw new IllegalArgumentException("illegal virtual node counts :" + vNodeCount);
+            int existingReplicas = getExistingReplicas(pNode);
+            for (int i = 0; i < vNodeCount; i++) {
+                VirtualNode<T> vNode = new VirtualNode<>(pNode, i + existingReplicas);
+                ring.put(hashFunction.hash(vNode.getKey()), vNode);
+            }
+        } finally {
+            writeLock.unlock();
         }
+
     }
 
     /**
@@ -54,14 +65,21 @@ public class ConsistentHashRouter<T extends Node> {
      * @param pNode
      */
     public void removeNode(T pNode) {
-        Iterator<Long> it = ring.keySet().iterator();
-        while (it.hasNext()) {
-            Long key = it.next();
-            VirtualNode<T> virtualNode = ring.get(key);
-            if (virtualNode.isVirtualNodeOf(pNode)) {
-                it.remove();
+        Lock writeLock = lock.writeLock();
+        try {
+            writeLock.lock();
+            Iterator<Long> it = ring.keySet().iterator();
+            while (it.hasNext()) {
+                Long key = it.next();
+                VirtualNode<T> virtualNode = ring.get(key);
+                if (virtualNode.isVirtualNodeOf(pNode)) {
+                    it.remove();
+                }
             }
+        } finally {
+            writeLock.unlock();
         }
+
     }
 
     /**
@@ -70,17 +88,24 @@ public class ConsistentHashRouter<T extends Node> {
      * @return
      */
     public T routeNode(String objectKey) {
-        if (ring.isEmpty()) {
-            return null;
+        Lock readLock = lock.readLock();
+        try {
+            readLock.lock();
+            if (ring.isEmpty()) {
+                return null;
+            }
+            Long hashVal = hashFunction.hash(objectKey);
+            SortedMap<Long,VirtualNode<T>> tailMap = ring.tailMap(hashVal);
+            Long nodeHashVal = !tailMap.isEmpty() ? tailMap.firstKey() : ring.firstKey();
+            return ring.get(nodeHashVal).getPhysicalNode();
+        } finally {
+           readLock.unlock();
         }
-        Long hashVal = hashFunction.hash(objectKey);
-        SortedMap<Long,VirtualNode<T>> tailMap = ring.tailMap(hashVal);
-        Long nodeHashVal = !tailMap.isEmpty() ? tailMap.firstKey() : ring.firstKey();
-        return ring.get(nodeHashVal).getPhysicalNode();
+
     }
 
 
-    public int getExistingReplicas(T pNode) {
+    private int getExistingReplicas(T pNode) {
         int replicas = 0;
         for (VirtualNode<T> vNode : ring.values()) {
             if (vNode.isVirtualNodeOf(pNode)) {

@@ -1,4 +1,4 @@
-package Combination_Sum;
+package backtracking.Combination_Sum;
 
 import java.util.List;
 
@@ -9,7 +9,7 @@ public class Solution {
     }
 
     public List<List<Integer>> combinationSum(int[] candidates, int target) {
-        
+
         for (int i = 0; i < candidates.length; i++) {
 
         }

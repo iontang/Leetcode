@@ -1,6 +1,6 @@
-package treeh.problem;
+package tree.problem;
 
-import treeh.common.TreeNode;
+import tree.common.TreeNode;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -24,7 +24,7 @@ import java.util.Stack;
  [5,4,11,2],
  [5,8,4,5]
  ]
- * 113. Path Sum II
+ * 113. Path Three_Sum II
  * 题意：给定一棵树和一个值，返回从根节点到最底节点之和等于这棵树的路径；
  */
 public class Path_Sum_II {

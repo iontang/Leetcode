@@ -7,13 +7,14 @@ import java.security.NoSuchAlgorithmException;
 import java.util.Arrays;
 import java.util.Map;
 import java.util.TreeMap;
+import java.util.concurrent.LinkedBlockingQueue;
 
-public class ConsistentHashLoadBalance1 {
+public class ConsistentHashLoadBalanceNoVirtualNode {
 
     private TreeMap<Long, String> realNodes = new TreeMap();
     private String[] nodes;
 
-    public ConsistentHashLoadBalance1(String[] nodes){
+    public ConsistentHashLoadBalanceNoVirtualNode(String[] nodes){
         this.nodes = Arrays.copyOf(nodes, nodes.length);
         initalization();
     }
@@ -35,15 +36,17 @@ public class ConsistentHashLoadBalance1 {
      */
     public String selectNode(String key){
         Long hashOfKey = hash(key, 0);
-        if (! realNodes.containsKey(hashOfKey)) {
+        if (!realNodes.containsKey(hashOfKey)) {
             //ceilingEntry()的作用是得到比hashOfKey大的第一个Entry
             Map.Entry<Long, String> entry = realNodes.ceilingEntry(hashOfKey);
-            if (entry != null)
+            if (entry != null) {
                 return entry.getValue();
-            else
+            } else {
                 return nodes[0];
-        }else
+            }
+        }else {
             return realNodes.get(hashOfKey);
+        }
     }
 
     private Long hash(String nodeName, int number) {
@@ -61,7 +64,7 @@ public class ConsistentHashLoadBalance1 {
      * @param str
      * @return
      */
-    public byte[] md5(String str) {
+    private byte[] md5(String str) {
         try {
             MessageDigest md = MessageDigest.getInstance("MD5");
             md.reset();
@@ -78,15 +81,10 @@ public class ConsistentHashLoadBalance1 {
 
     private void printTreeNode(){
         if (realNodes != null && ! realNodes.isEmpty()){
-            realNodes.forEach((hashKey, node) ->
-                    System.out.println(
-                            new StringBuffer(node)
-                                    .append(" ==> ")
-                                    .append(hashKey)
-                    )
-            );
-        }else
+            realNodes.forEach((hashKey, node) -> System.out.println(new StringBuffer(node).append(" ==> ").append(hashKey)));
+        }else {
             System.out.println("Cycle is Empty");
+        }
     }
 
     public static void main(String[] args){

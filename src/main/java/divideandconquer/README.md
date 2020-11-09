@@ -1,4 +1,4 @@
-215. Kth Largest Element in an Array：
+215. Kth Largest Element in an array：
 借用快排巧解【这个方法一定要试一下】。
 
 53. Maximum Subarray

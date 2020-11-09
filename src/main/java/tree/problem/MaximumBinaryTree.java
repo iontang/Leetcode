@@ -1,7 +1,7 @@
-package treeh.problem;
+package tree.problem;
 
 
-import treeh.common.TreeNode;
+import tree.common.TreeNode;
 
 import java.util.Deque;
 import java.util.LinkedList;

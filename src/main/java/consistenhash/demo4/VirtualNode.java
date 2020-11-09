@@ -1,4 +1,4 @@
-package consistenhash.demo3;
+package consistenhash.demo4;
 
 public class VirtualNode<T extends Node> implements Node {
 

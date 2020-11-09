@@ -1,4 +1,4 @@
-package treeh.common;
+package tree.common;
 
 public class TreeNode {
     public int val;
@@ -9,5 +9,4 @@ public class TreeNode {
     public TreeNode(int x) {
         val = x;
     }
-
 }
