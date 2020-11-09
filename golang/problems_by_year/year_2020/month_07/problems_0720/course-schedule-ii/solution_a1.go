@@ -1,14 +1,12 @@
-package Course_Schedule_ll
-
-
+package course_schedule_ii
 
 func findOrder_A1(numCourses int, prerequisites [][]int) []int {
 	g := &Graph{
-		sorted: make([]int, 0),
+		sorted:    make([]int, 0),
 		unvisited: make([]int, numCourses),
-		state: make(map[int]int),
-		adjacent: make(map[int][]int),
-		isDAG: true,
+		state:     make(map[int]int),
+		adjacent:  make(map[int][]int),
+		isDAG:     true,
 	}
 
 	for i := 0; i < numCourses; i++ {
@@ -56,7 +54,7 @@ type Graph struct {
 	state map[int]int
 	// adjacency list
 	adjacent map[int][]int
-	isDAG bool
+	isDAG    bool
 }
 
 func (g *Graph) visit(node int) {
@@ -71,7 +69,7 @@ func (g *Graph) visit(node int) {
 
 	g.state[node] = _visiting
 
-	for _, adjNode := range g.adjacent[node]{
+	for _, adjNode := range g.adjacent[node] {
 		if g.isDAG == false {
 			break
 		}

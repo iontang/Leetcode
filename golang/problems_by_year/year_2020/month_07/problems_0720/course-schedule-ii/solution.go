@@ -1,10 +1,10 @@
-// package Course_Schedule_ll
-package Course_Schedule_ll
+// package course-schedule-ii
+package course_schedule_ii
 
 func main() {
 	var prerequisites = [][]int{
-		{2,0},
-		{2,1},
+		{2, 0},
+		{2, 1},
 	}
 	numCourses := 3
 	var res = findOrder(numCourses, prerequisites)
@@ -15,7 +15,7 @@ func main() {
 }
 
 func findOrder(numCourses int, prerequisites [][]int) []int {
-	outDegree  := make([]int, numCourses)
+	outDegree := make([]int, numCourses)
 	graph := map[int][]int{}
 	for _, preq := range prerequisites {
 		var toTake = preq[0]

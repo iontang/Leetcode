@@ -1,16 +1,15 @@
 package main
 
 import (
-		"math"
+	"math"
 )
 
-
 func majorityElement(nums []int) int {
-	f := int(math.Floor(float64(len(nums)/2)))
+	f := int(math.Floor(float64(len(nums) / 2)))
 	h := make(map[int]int)
 	for _, v := range nums {
 		if val, ok := h[v]; ok {
-			h[v] = val+1
+			h[v] = val + 1
 		} else {
 			h[v] = 1
 		}
@@ -23,12 +22,12 @@ func majorityElement(nums []int) int {
 	return 0
 }
 
-func majorityElement_A1(nums []int) int  {
+func majorityElement_A1(nums []int) int {
 	m := map[int]int{}
 	for _, num := range nums {
-		m[num] = m[num] +1
+		m[num] = m[num] + 1
 	}
-	h := len(nums) >> 1 // equal divide 2
+	h := len(nums) >> 1   // equal divide 2
 	if len(nums)&1 == 1 { // 这一步有什么用？
 		h++
 	}
@@ -37,7 +36,7 @@ func majorityElement_A1(nums []int) int  {
 			return num
 		}
 	}
-	return 0;
+	return 0
 
 }
 

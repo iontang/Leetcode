@@ -1,10 +1,8 @@
-package Course_Schedule_ll
-
-
+package course_schedule_ii
 
 func findOrder_A2(numCourses int, prerequisites [][]int) []int {
 	graph := make([][]int, numCourses) // 矩阵记录有向图
-	indeg := make([]int, numCourses) // 记录入度
+	indeg := make([]int, numCourses)   // 记录入度
 
 	// Initialize the graph and indeg.
 	for _, prereq := range prerequisites {

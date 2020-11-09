@@ -1,6 +1,6 @@
 package tarjan
 
-func Connections(graph map[interface{}][]interface{}) [][]interface{}  {
+func Connections(graph map[interface{}][]interface{}) [][]interface{} {
 	g := &data{
 		graph: graph,
 		nodes: make([]node, 0, len(graph)),
@@ -42,11 +42,12 @@ func (data *data) strongConnect(v interface{}) *node {
 	data.nodes = append(data.nodes, node{lowlink: index, stacked: true})
 	node := &data.nodes[index]
 
-	// 遍历顶点对应的子节点
+	// 遍历顶点对应的子节点，邻接矩阵存储的图，是一个二维数组。
 	for _, w := range data.graph[v] {
 		i, seen := data.index[w]
 		if !seen {
 			n := data.strongConnect(w)
+			// n为子节点，node为父节点。
 			if n.lowlink < node.lowlink {
 				node.lowlink = n.lowlink
 			}

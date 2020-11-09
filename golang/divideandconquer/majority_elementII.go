@@ -4,7 +4,7 @@ import "fmt"
 
 func majorityElementII(nums []int) []int {
 
-	length := len(nums)/3+1
+	length := len(nums)/3 + 1
 	if nums == nil || len(nums) == 0 {
 		return nil
 	}
@@ -23,7 +23,7 @@ func majorityElementII(nums []int) []int {
 			count1 = 1
 		} else if count2 == 0 {
 			num2 = v
-			count2 =1
+			count2 = 1
 		} else {
 			// This condition is important, which means a pair out,
 			// filtering a set of three elements out
@@ -32,11 +32,10 @@ func majorityElementII(nums []int) []int {
 		}
 	}
 
-
 	// 重新对数进行统计
 	var result []int
 	count1 = 0
-	count2=0
+	count2 = 0
 	for _, v := range nums {
 		// 此处必须是if else，否则 [1]这个测试用例无法通过
 		if v == num1 {
@@ -54,8 +53,6 @@ func majorityElementII(nums []int) []int {
 
 	return result
 }
-
-
 
 func majorityElement_II_A1(nums []int) []int {
 	cand1, cand2, cnt1, cnt2 := 0, 0, 0, 0
@@ -97,7 +94,7 @@ func main() {
 
 	//s :=[] int {1}
 
-	s1 := []int {2,2,1,3}
+	s1 := []int{2, 2, 1, 3}
 
 	fmt.Println(majorityElementII(s1))
 
