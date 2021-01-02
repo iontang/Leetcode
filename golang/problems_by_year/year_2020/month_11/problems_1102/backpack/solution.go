@@ -75,6 +75,8 @@ func helper(idx int, cw int, A []int, n int, m int) {
 	}
 }
 
+// 在n个物品中挑选若干物品装入背包，最多能装多满？
+// 假设背包的大小为m，每个物品的大小为A[i]
 func backPack(m int, A []int) int {
 	arrLen := len(A)
 	dp := make([][]bool, arrLen)
@@ -95,6 +97,36 @@ func backPack(m int, A []int) int {
 		for j := 0; j <= m-A[i]; j++ {
 			if dp[i-1][j] {
 				dp[i][j+A[i]] = true
+			}
+		}
+	}
+	for i := m; i >= 0; i-- {
+		if dp[arrLen-1][i] {
+			return i
+		}
+	}
+	return 0
+}
+
+// 另一种代码实现方式：
+func backPack_A1V1 (m int, A []int) int {
+	arrLen := len(A)
+	dp := make([][]bool, arrLen)
+	for i := 0; i < arrLen; i++ {
+		dp[i] = make([]bool, m+1)
+	}
+
+	dp[0][0] = true
+	if A[0] <= m {
+		dp[0][A[0]] = true
+	}
+	for i := 1; i < arrLen; i++ {
+		for j := 0; j <= m; j++ { // 从0开始，相当于初始化第0列都是0
+			// 不放
+			dp[i][j] = dp[i-1][j]
+			// 放
+			if A[i] <= j && dp[i-1][j - A[i]]{
+				dp[i][j] = true
 			}
 		}
 	}

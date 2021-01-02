@@ -1,7 +1,9 @@
-package backpack
+package backpack_v
+
+//
 
 import "testing"
 
 func TestSolutionA2(t *testing.T) {
-	backPack_A1V1(10, []int{3, 4, 8, 5})
+	backPackV([]int{1,2,3,3,7}, 7)
 }
