@@ -1,4 +1,4 @@
-package treeh.problem
+package tree.problem
 
 
 
@@ -8,7 +8,7 @@ package treeh.problem
   */
 object BinaryTreePreorderTraversal {
 
-//  def main(args: Array[String]): Unit = {
+//  def main(args: array[String]): Unit = {
 //    println("##############   == " + "谢汶霖  ～。～")
 //  }
 

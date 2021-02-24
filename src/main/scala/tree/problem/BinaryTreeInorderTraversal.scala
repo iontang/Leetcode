@@ -1,4 +1,4 @@
-package treeh.problem
+package tree.problem
 
 
 object BinaryTreeInorderTraversal {
