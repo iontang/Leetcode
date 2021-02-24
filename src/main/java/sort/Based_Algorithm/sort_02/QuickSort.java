@@ -31,7 +31,7 @@ public class QuickSort {
         int pivot = a[r];
         int i = p;
         for(int j = p; j < r; ++j) {
-            if (a[j] > pivot) {
+            if (a[j] > pivot) { // 此处的条件决定了是顺序还是倒序排
                 if (i == j) {
                     ++i; // i == j的情况下，不交换，较少系统CPU运行
                 } else {
