@@ -1,4 +1,7 @@
 package stone_game_iii
+
+import "math"
+
 // 2020-12-29 21:00:56
 // 1406.Stone Game III
 // stone-game-iii
@@ -82,8 +85,66 @@ package stone_game_iii
 
 
 //leetcode submit region begin(Prohibit modification and deletion)
+//{x,x,x,x,x,x}
+//{x} {x,x,x,x,x} k=1: sum[1]   - dp[2]
+//				  k=2: sum[1:2] - dp[3]
+//				  k=3: sum[1:3] - dp[4]
 func stoneGameIII(stoneValue []int) string {
-
+	n := len(stoneValue)
+	// dp[i]表示已经有i堆石头被拿走的情况下，当前玩家在后续的操作中最多总共能拿到多少分？
+	// dp 代表的不是人，而代表的是那个最优策略。
+	dp := make([]int, n+1)
+	for i := 1; i <= len(stoneValue); i++ {
+		dp[i-1] = math.MinInt64
+	}
+	dp[n] = 0
+	sum := 0
+	for i := n-1; i >= 0; i-- {
+		sum += stoneValue[i]
+		for k := i; k < i+3 && k < n; k++ {
+			dp[i] = maxInt(dp[i], sum - dp[k+1])
+		}
+	}
+	Alice := dp[0]
+	Bob := sum - dp[0]
+	if Alice > Bob {
+		return "Alice"
+	}
+	if Alice < Bob {
+		return "Bob"
+	}
+	return "Tie"
 }
+
+func maxInt(a, b int) int {
+	if a > b {
+		return a
+	}
+	return b
+}
+
+//class Solution {
+//public String stoneGameIII(int[] stoneValue) {
+//int n=stoneValue.length;
+//int[] dp=new int[n+1];
+//
+//dp[n]=0;
+//int sum=0;
+//for(int i=n-1;i>=0;i--){
+////由于有负值分数，这里注意一下
+//dp[i]=Integer.MIN_VALUE;
+//sum+=stoneValue[i];
+//for(int j=i;j<i+3 && j<n;j++){
+//dp[i]=Math.max(dp[i],sum-dp[j+1]);
+//}
+//}
+//int alice=dp[0];
+//int bob=sum-dp[0];
+//if(alice==bob) return "Tie";
+//if(alice>bob) return "Alice";
+//return "Bob";
+//}
+//}
+
 //leetcode submit region end(Prohibit modification and deletion)
 

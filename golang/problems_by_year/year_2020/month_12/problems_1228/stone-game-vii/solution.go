@@ -12,8 +12,7 @@ package stone_game_vii
 //one with the higher score when there are no stones left to remove.
 //
 // Bob found that he will always lose this game (poor Bob, he always loses), so
-//he decided to minimize the score's difference. Alice's goal is to maximize the d
-//ifference in the score.
+//he decided to minimize the score's difference. Alice's goal is to maximize the difference in the score.
 //
 // Given an array of integers stones where stones[i] represents the value of the
 // ith stone from the left, return the difference in Alice and Bob's score if they
@@ -35,8 +34,11 @@ package stone_game_vii
 //- Bob removes 1 and gets 4 points. Alice = 18, Bob = 12, stones = [4].
 //- Alice removes 4 and gets 0 points. Alice = 18, Bob = 12, stones = [].
 //The score difference is 18 - 12 = 6.
-//
-//
+// 5,3,1,4: 13
+// 5,3,1:   5+3+1=9
+// 5,3:     13+8
+// 5:		9+5
+// 21-14 = 7
 // Example 2:
 //
 //
@@ -56,8 +58,34 @@ package stone_game_vii
 
 
 //leetcode submit region begin(Prohibit modification and deletion)
+// This problem want to sum the remain elements, and the first problem 'stone game' sum the picked element,
+// which is different.
+// Alice maximize the diff, and Bob minimize the diff.
 func stoneGameVII(stones []int) int {
+	// dp[i][j]: the maximum difference in Alice and Bob's score when playing in [i:j]
+	n := len(stones)
+	dp := make([][]int, n+1)
+	preSum := make([]int, n+1)
+	for i := 1; i <= n; i++ {
+		preSum[i] = preSum[i-1] + stones[i-1]
+		dp[i] = make([]int, n+1)
+	}
 
+	// 和第一题不同的地方在于前缀和
+	for len := 2; len <= n; len++ {
+		for i := 1; i+len-1 <= n; i++ {
+			j := i+len-1
+			dp[i][j] = maxInt(preSum[j] - preSum[i] - dp[i+1][j], preSum[j-1] - preSum[i-1] -dp[i][j-1])
+		}
+	}
+	return dp[1][n]
+}
+
+func maxInt(a, b int) int {
+	if a > b {
+		return a
+	}
+	return b
 }
 //leetcode submit region end(Prohibit modification and deletion)
 

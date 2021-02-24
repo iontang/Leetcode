@@ -1,7 +1,5 @@
 package stone_game
 
-import "math"
-
 // 2020-12-23 23:47:12
 // 877.Stone Game
 // stone-game
@@ -62,22 +60,35 @@ func stoneGame_W1(piles []int) bool {
 	for start < end {
 		//if piles[start] >
 	}
+	return false
 }
 
 func stoneGame(piles []int) bool {
 	len := len(piles)
+	// 当 i<j 时，当前玩家可以选择取走 piles[i] 或 piles[j]，
+	// 然后轮到另一个玩家在剩下的石子堆中取走石子。在两种方案中，
+	// 当前玩家会选择最优的方案，使得自己的石子数量最大化。
+	// 因此可以得到如下状态转移方程： dp[i][j] = maxInt(piles[i]-dp[i+1][j], piles[j]-dp[i][j-1])
 	dp := make([][]int, len)
 	for i := 0; i < len; i++ {
 		dp[i] = make([]int, len)
 		dp[i][i] = piles[i]
 	}
+	// [5,3,4,5]: 4-2+1=3; 0+2-1=1
 	for l := 2; l <= len; l++ {
 		for i := 0; i < len-l+1; i++ {
 			j := i + l -1
-			dp[i][j] = int(math.Max(float64(piles[i]-dp[i+1][j]), float64(piles[j]-dp[i][j-1])))
+			dp[i][j] = maxInt(piles[i]-dp[i+1][j], piles[j]-dp[i][j-1])
 		}
 	}
 	return dp[0][len-1] > 0
+}
+
+func maxInt(a, b int) int {
+	if a > b {
+		return a
+	}
+	return b
 }
 //leetcode submit region end(Prohibit modification and deletion)
 

@@ -1,5 +1,7 @@
 package stone_game_vi
 
+import "sort"
+
 // 2020-12-29 20:43:02
 // 1686.Stone Game VI
 // stone-game-vi
@@ -74,8 +76,35 @@ package stone_game_vi
 
 
 //leetcode submit region begin(Prohibit modification and deletion)
-func stoneGameVI(aliceValues []int, bobValues []int) int {
+func stoneGameVI_w1(aliceValues []int, bobValues []int) int {
+	n := len(aliceValues)
 
+	sumMap := make(map[int]int)
+	for i := 0; i < n; i++ {
+		sumMap[aliceValues[i] + bobValues[i]] = i
+	}
+
+	var keys []int
+	for k := range sumMap {
+		keys = append(keys, k)
+	}
+	sort.Sort(sort.Reverse(sort.IntSlice(keys)))
+	aliceSum, bobSum := 0, 0
+	for i, key := range keys {
+		if i % 2 == 0 {
+			aliceSum += aliceValues[sumMap[key]]
+		} else {
+			bobSum += bobValues[sumMap[key]]
+		}
+	}
+
+	if aliceSum > bobSum {
+		return 1
+	} else if aliceSum < bobSum {
+		return -1
+	} else {
+		return 0
+	}
 }
 //leetcode submit region end(Prohibit modification and deletion)
 

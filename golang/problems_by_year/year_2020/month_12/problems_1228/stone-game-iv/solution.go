@@ -72,8 +72,34 @@ package stone_game_iv
 
 
 //leetcode submit region begin(Prohibit modification and deletion)
+var recursionArr [100001]int
 func winnerSquareGame(n int) bool {
+	for i := 1; i <= n; i++ {
+		recursionArr[i] = -1
+	}
+	return solve(n)
+}
 
+func solve(n int) bool {
+	if recursionArr[n] != -1 {
+		return i2bool(recursionArr[n])
+	}
+
+	for i := 1; i*i <= n; i++ {
+		if !solve(n - i*i) {
+			recursionArr[n] = 1
+			return true
+		}
+	}
+	recursionArr[n] = 0
+	return false
+}
+
+func i2bool(i int) bool  {
+	if i == 0 {
+		return false
+	}
+	return true
 }
 //leetcode submit region end(Prohibit modification and deletion)
 

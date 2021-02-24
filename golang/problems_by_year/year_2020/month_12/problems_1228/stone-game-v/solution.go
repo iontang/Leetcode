@@ -61,8 +61,42 @@ package stone_game_v
 
 
 //leetcode submit region begin(Prohibit modification and deletion)
+// java answer: https://leetcode-cn.com/problems/stone-game-v/solution/chang-gui-de-qu-jian-dpjian-dan-yi-dong-java-by-mr/
 func stoneGameV(stoneValue []int) int {
+	n := len(stoneValue)
+	dp := make([][]int, n+1)
+	preSum := make([]int, n+1)
+	for i := 1; i <= n; i++ {
+		preSum[i] = preSum[i-1] + stoneValue[i-1]
+		dp[i] = make([]int, n+1)
+	}
 
+	for len := 1; len <= n; len++ {
+		// 这里可以写成另外一种表达：
+		//for i := 1; i <= n-len+1; i++ {
+		for i := 1; i+len-1 <= n; i++ {
+			j := i+len-1
+			for k := i; k < j; k++ {
+				leftSum := preSum[k] - preSum[i-1]
+				rightSum := preSum[j] - preSum[k]
+				if leftSum > rightSum {
+					dp[i][j] = maxInt(dp[i][j], rightSum+dp[k+1][j])
+				} else if leftSum < rightSum {
+					dp[i][j] = maxInt(dp[i][j], leftSum + dp[i][k])
+				} else {
+					dp[i][j] = maxInt(dp[i][j], leftSum + maxInt(dp[i][k], dp[k+1][j]))
+				}
+			}
+		}
+	}
+	return dp[1][n]
+}
+
+func maxInt(a, b int) int {
+	if a > b {
+		return a
+	}
+	return b
 }
 //leetcode submit region end(Prohibit modification and deletion)
 
