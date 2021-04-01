@@ -130,7 +130,7 @@ class LRUCache {
     LinkedHashMap<Integer, Integer> hashMap;
     public LRUCache(int capacity) {
         // 重写这个链表移除最后一个元素的方法。
-        hashMap = new LinkedHashMap<Integer, Integer>(16,0.75f,true){
+        hashMap = new LinkedHashMap<Integer, Integer>(16,0.75f,true) {
 
             //anonymous inner class to override removeEldestEntry behaivor.
             @Override
@@ -146,7 +146,7 @@ class LRUCache {
         return -1;
     }
     public void put(int key, int value) {
-        hashMap.put(key,value);
+        hashMap.put(key, value);
     }
 
 

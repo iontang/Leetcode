@@ -11,6 +11,8 @@ public class MergeSort {
 
     public static void main(String[] args) {
         int[] a = new int[]{5,2,1,6,3};
+        MergeSort mergeSort = new MergeSort();
+        MergeSort.mergeSort(a, a.length);
     }
 
     public static void mergeSort(int[] a, int n) {
